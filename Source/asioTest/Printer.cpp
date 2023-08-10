@@ -2,7 +2,7 @@
 #include <iostream>
 #include <boost/bind/bind.hpp>
 
-Printer::Printer(boost::asio::io_context& io,int type)
+Printer::Printer(boost::asio::io_context& io)
     : strand_(boost::asio::make_strand(io))
     , timer1_(io, boost::asio::chrono::seconds(1))
     , timer2_(io, boost::asio::chrono::seconds(1))
