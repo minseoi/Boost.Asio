@@ -3,14 +3,9 @@
 #include <iostream>
 #include <string>
 #include <boost/asio.hpp>
+#include "../../basis/Statics.hpp"
 
 using boost::asio::ip::tcp;
-
-std::string TcpServer::make_daytime_string()
-{
-    time_t now = time(0);
-    return ctime(&now);
-}
 
 void TcpServer::Run()
 {
@@ -21,8 +16,7 @@ void TcpServer::Run()
     {
         tcp::socket socket(io);
         acceptor.accept(socket);
-
-        std::string message = make_daytime_string();
+        std::string message = Statics::make_daytime_string();
         boost::system::error_code ignored_error;
         boost::asio::write(socket, boost::asio::buffer(message), ignored_error);
     }
