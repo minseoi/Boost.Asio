@@ -1,21 +1,14 @@
 #include <iostream>
-#include "asioTest/socket/TcpClient.hpp"
-#include "asioTest/socket/TcpAsyncServer.hpp"
+#include <boost/asio.hpp>
+#include "Core/Server.hpp"
 
 int main(int argc, char** argv)
 {
-    bool bIsServerCode = false;
-    if(bIsServerCode)
-    {
-        boost::asio::io_context io_context;
-        TcpAsyncServer server(io_context, 13);
-        io_context.run();
-    }
-    else
-    {
-        TcpClient client;
-        client.Run();
-    }
+    boost::asio::io_context io_context;
+    short port = 8123;
+    Server server(io_context, port);
+    std::cout<<"Server is running on port "<<port<<std::endl;
+    io_context.run();
 
     return 0;
 }
